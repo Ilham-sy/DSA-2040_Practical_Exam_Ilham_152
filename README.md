@@ -168,7 +168,7 @@ CREATE TABLE SalesFact (
 1. OLAP Queries
 
 Roll-Up: Total sales by country and quarter
-```
+```sql 
 SELECT s.country,
        t.quarter,
        SUM(f.total_sales) AS total_sales
