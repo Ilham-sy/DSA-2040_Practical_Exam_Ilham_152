@@ -201,8 +201,9 @@ GROUP BY p.category;
 
 2. Visualization
 
-The Roll-Up query result was visualized using Matplotlib.
-📌 Sales by Country (Bar Chart):
+The Roll-Up query result was visualized using Matplotlib and below is the visualization:
+
+📌 Sales by Country (Bar Chart): 
 
 ![Sales by Country](data_warehousing/task3_olap/sales_by_country_analysis.png)
 
