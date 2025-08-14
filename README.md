@@ -120,7 +120,7 @@ CREATE TABLE SalesFact (
 - Removed rows with missing `CustomerID` values.
 - Ensured all numeric columns had correct data types.
 
-![Extracted Data Preview](task2_etl/screenshots/extract_preview.png)
+![extract_preview](data_warehousing/task2_etl/screenshots/extract_preview.png)
 
 ---
 
