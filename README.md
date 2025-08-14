@@ -1,6 +1,6 @@
-## Section 1: Data Warehousing (50 Marks)
+## Section 1: Data Warehousing 
 
-### Task 1: Data Warehouse Design (15 Marks)
+### Task 1: Data Warehouse Design 
 
 **Scenario:**  
 We are designing a data warehouse for a retail company that sells products across multiple categories (e.g., electronics, clothing). The company tracks **sales**, **customers**, **products**, and **time**.
@@ -151,7 +151,7 @@ CREATE TABLE SalesFact (
 - **Screenshots** — Database tables post-load
 
 
-## Section 3: OLAP Queries and Analysis (15 Marks)
+## Section 3: OLAP Queries and Analysis 
 1. OLAP Queries
 
 Roll-Up: Total sales by country and quarter
@@ -205,8 +205,126 @@ ii) Seasonal Trends: A drill-down query on the UK's sales showed clear monthly f
 
 iii) Data-Driven Decisions: The data warehouse structure allows for quick and flexible querying, directly supporting better business decisions. Managers can easily answer questions like "Which countries are our most profitable?" to guide forecasting and strategic planning.
 
+## Section 2: Data Mining Project
+
+This repository contains solutions for Section 2: Data Mining (50 Marks).
+It includes preprocessing, clustering, classification, and association rule mining tasks using Python.
+
+### Task 1: Data Preprocessing and Exploration 
+Loads the Iris dataset from scikit-learn (or synthetic data generation code if applicable)
+
+1. Preprocessing steps:
+   - Missing value checks & handling
+   - Min-Max normalization
+   - Class label encoding (if required)
+
+2. Exploratory Data Analysis (EDA):
+
+- Summary statistics using pandas.describe()
+- Pairplot (Seaborn)
+- Correlation heatmap
+- Outlier detection via boxplots
+
+3. Custom function for 80/20 Train-Test split
+
+Output Files:
+1. Boxplot of Petal Width (cm)
+This boxplot shows the distribution of petal width across all samples. The median is around X cm (replace with your actual value), and the box indicates the interquartile range (IQR). The whiskers extend to the minimum and maximum non-outlier values. Any points beyond the whiskers are considered potential outliers — here, we can see that species like Iris setosa have much smaller petal widths compared to others.
+
+![Boxplot of Petal Width (cm)](data_mining/task1_preprocessing/boxplot_petal_width_(cm).png)
+
+2. Boxplot of Sepal Length (cm)
+This plot displays the variation in sepal length. Most values fall within the range X–Y cm, with the median at approximately Z cm. Compared to petal width, there are fewer extreme outliers, indicating that sepal length is relatively consistent across species, though still showing distinct differences between them.
+
+![Boxplot of Sepal Length (cm)](data_mining/task1_preprocessing/boxplot_sepal_length_(cm).png)
+
+3. Boxplot of Sepal Width (cm)
+The sepal width shows more spread compared to petal length and width. The distribution has a few outliers, particularly on the higher side. This could indicate measurement variation or natural biological variation. Sepal width might be less discriminative than petal dimensions for separating species.
+
+![Boxplot of Sepal Width (cm)](data_mining/task1_preprocessing/boxplot_sepal_width_(cm).png)
+
+4. Correlation Heatmap
+This heatmap illustrates the Pearson correlation coefficients between all features. We can see a strong positive correlation between petal length and petal width (values close to 1), suggesting these features change together and are good predictors for classification. Sepal length has a moderate correlation with petal length, while sepal width has weaker or negative correlations with other features.
+
+![Correlation Heatmap](data_mining/task1_preprocessing/correlation_heatmap.png)
+
+5. Pairplot
+The pairplot shows scatter plots for all feature combinations and histograms on the diagonal. Clear clustering can be observed for petal-based measurements, especially between petal length and petal width, where species are visibly separated. Sepal-based features show more overlap, indicating they may be less effective alone for distinguishing species.
+![Pairplot](data_mining/task1_preprocessing/pairplot.png)
 
 
 
+### Task 2: Clustering
+
+1. Elbow Curve
+Displays WCSS against the number of clusters (k). A clear elbow at k = 3 indicates the optimal number of clusters for the dataset.
+
+![Elbow Curve](data_mining/task2_clustering/elbow_curve.png)
+
+2. Clusters (K=2)
+Produces broad groupings with less precise separation. While silhouette score is relatively high (0.664), there are 50 misclassified points due to merging similar species.
+
+![Clusters (K=2)](data_mining/task2_clustering/clusters_k2.png)
+
+3. Clusters (K=3)
+Best clustering configuration, closely matching the three Iris species. Lowest misclassification rate (17), highest ARI (0.716), and good cluster separation.
+
+![Clusters (K=3)](data_mining/task2_clustering/clusters_k3.png)
+
+4. Clusters (K=4)
+Over-segments the data, leading to poorer silhouette score (0.397) and 21 misclassifications without meaningful improvement.
+
+![Clusters (K=4)](data_mining/task2_clustering/clusters_k4.png)
+
+5. Clusters (K=5)
+Over-divides the dataset into too many groups, reducing cohesion within clusters. Lowest silhouette score (0.260) and a poor ARI (0.469), with 21 misclassifications. This configuration adds complexity without improving accuracy.
+
+![Clusters (K=5)](data_mining/task2_clustering/clusters_k5.png)
+
+### Task 3: Classification & Association Rule Mining 
+## Part A: Classification
+
+We implemented and compared two models:
+
+- Decision Tree Classifier – Visualized using plot_tree to show decision splits and feature importance.
+
+![Decision Tree](data_mining/task3_classification_accociation/decision_tree.png)
+
+- K-Nearest Neighbors (KNN) with k=5 – A distance-based classifier used for performance comparison.
+
+# Metrics Used:
+- Accuracy – Proportion of correct predictions.
+- Precision – Ratio of correctly predicted positives to all predicted positives.
+- Recall – Ratio of correctly predicted positives to all actual positives.
+- F1-score – Harmonic mean of precision and recall.
+
+# Comparative Analysis:
+Based on the metrics, the model with higher accuracy and balanced precision/recall was considered better. Decision Tree offered interpretability and clear decision boundaries, while KNN’s performance depended on data scaling and neighborhood size.
+
+## Part B: Association Rule Mining
+Generated a synthetic transactional dataset (20–50 transactions).
+
+- Applied the Apriori algorithm with:
+- Minimum Support = 0.2
+- Minimum Confidence = 0.5
+- Extracted Top 5 rules sorted by lift.
+
+Example Practical Implication:
+If a rule indicates {Bread} → {Butter} with high lift and confidence, it suggests that customers who buy bread are significantly more likely to also buy butter. This insight could guide cross-selling strategies or store product placement.
+
+![Association Rules](data_mining/task3_classification_accociation/analysis.png)
+
+
+# CONCLUSION:
+In this project, I:
+
+- Built a star schema for the retail dataset to support analytical queries.
+- Created and ran an ETL process to clean, transform, and load data into a SQLite warehouse.
+- Wrote and executed OLAP queries to extract insights such as top-selling products and sales trends.
+- Preprocessed data and applied K-Means clustering (k=2 to k=5) to compare segmentation results.
+- Implemented two classification models – Decision Tree and K-Nearest Neighbors (KNN) – and compared their accuracy, precision, recall, and F1-scores.
+- Used the Apriori algorithm for association rule mining and interpreted the top 5 rules by lift.
+
+This project allowed me to combine data warehousing and data mining techniques, practice with real-world workflows, and understand how different models and algorithms reveal patterns in data.
 
 
