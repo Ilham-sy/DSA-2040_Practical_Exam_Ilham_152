@@ -1,5 +1,3 @@
--- SQLite syntax
-
 -- Dimension Tables
 CREATE TABLE CustomerDim (
     CustomerKey INTEGER PRIMARY KEY AUTOINCREMENT,
