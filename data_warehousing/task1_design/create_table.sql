@@ -1,44 +1,39 @@
--- Product Dimension Table
-CREATE TABLE Product_Dim (
-    product_id SERIAL PRIMARY KEY,
-    stock_code TEXT NOT NULL,
-    description TEXT,
-    category TEXT
+-- SQLite syntax
+
+-- Dimension Tables
+CREATE TABLE CustomerDim (
+    CustomerKey INTEGER PRIMARY KEY AUTOINCREMENT,
+    CustomerID VARCHAR(50) NOT NULL UNIQUE,
+    CustomerName VARCHAR(100),
+    CustomerCountry VARCHAR(100)
 );
 
--- Customer Dimension Table  
-CREATE TABLE Customer_Dim (
-    customer_id SERIAL PRIMARY KEY,
-    customer_code TEXT NOT NULL,
-    country TEXT,
-    customer_segment TEXT
+CREATE TABLE ProductDim (
+    ProductKey INTEGER PRIMARY KEY AUTOINCREMENT,
+    StockCode VARCHAR(50) NOT NULL UNIQUE,
+    Description VARCHAR(255),
+    Category VARCHAR(50)
 );
 
--- Time Dimension Table
-CREATE TABLE Time_Dim (
-    time_id SERIAL PRIMARY KEY,
-    date DATE NOT NULL,
-    day INTEGER,
-    month INTEGER,
-    quarter INTEGER,
-    year INTEGER
+CREATE TABLE TimeDim (
+    TimeKey INTEGER PRIMARY KEY AUTOINCREMENT,
+    FullDate DATE NOT NULL UNIQUE,
+    DayOfMonth INTEGER,
+    Month INTEGER,
+    Quarter INTEGER,
+    Year INTEGER
 );
 
--- Store/Region Dimension Table
-CREATE TABLE Store_Dim (
-    store_id SERIAL PRIMARY KEY,
-    country TEXT NOT NULL,
-    region TEXT
-);
-
--- Sales Fact Table
-CREATE TABLE Sales_Fact (
-    sales_id SERIAL PRIMARY KEY,
-    product_id INTEGER REFERENCES Product_Dim(product_id),
-    customer_id INTEGER REFERENCES Customer_Dim(customer_id),
-    time_id INTEGER REFERENCES Time_Dim(time_id),
-    store_id INTEGER REFERENCES Store_Dim(store_id),
-    quantity INTEGER,
-    unit_price DECIMAL(10,2),
-    total_sales DECIMAL(10,2)
+-- Fact Table
+CREATE TABLE SalesFact (
+    SalesFactKey INTEGER PRIMARY KEY AUTOINCREMENT,
+    TimeKey INTEGER NOT NULL,
+    ProductKey INTEGER NOT NULL,
+    CustomerKey INTEGER NOT NULL,
+    Quantity INTEGER NOT NULL,
+    UnitPrice REAL NOT NULL,
+    TotalSales REAL NOT NULL,
+    FOREIGN KEY (TimeKey) REFERENCES TimeDim(TimeKey),
+    FOREIGN KEY (ProductKey) REFERENCES ProductDim(ProductKey),
+    FOREIGN KEY (CustomerKey) REFERENCES CustomerDim(CustomerKey)
 );
