@@ -269,17 +269,17 @@ Produces broad groupings with less precise separation. While silhouette score is
 3. Clusters (K=3)
 Best clustering configuration, closely matching the three Iris species. Lowest misclassification rate (17), highest ARI (0.716), and good cluster separation.
 
-![Clusters (K=3)](data_mining/task2_clustering/clusters_k3.png)
+![Clusters (K=3)](data_mining/task2_clustering/cluster_k3.png)
 
 4. Clusters (K=4)
 Over-segments the data, leading to poorer silhouette score (0.397) and 21 misclassifications without meaningful improvement.
 
-![Clusters (K=4)](data_mining/task2_clustering/clusters_k4.png)
+![Clusters (K=4)](data_mining/task2_clustering/cluster_k4.png)
 
 5. Clusters (K=5)
 Over-divides the dataset into too many groups, reducing cohesion within clusters. Lowest silhouette score (0.260) and a poor ARI (0.469), with 21 misclassifications. This configuration adds complexity without improving accuracy.
 
-![Clusters (K=5)](data_mining/task2_clustering/clusters_k5.png)
+![Clusters (K=5)](data_mining/task2_clustering/cluster_k5.png)
 
 ### Task 3: Classification & Association Rule Mining 
 ## Part A: Classification
