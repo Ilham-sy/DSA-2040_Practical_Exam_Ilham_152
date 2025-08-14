@@ -24,3 +24,4 @@ JOIN Product_Dim p ON f.product_id = p.product_id
 WHERE p.category = 'Electronics'
 GROUP BY p.category;
 
+

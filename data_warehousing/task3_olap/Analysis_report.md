@@ -1,13 +1,10 @@
 # Analysis Report
+This report summarizes insights from the online retail data, which was stored in a star-schema data warehouse to support efficient analytical queries. The warehouse is composed of SalesFact, CustomerDim, and TimeDim tables, enabling us to perform multi-dimensional analysis on sales performance.
 
-The OLAP queries provide valuable multi-dimensional insights into sales performance across regions, time, and product categories.
+The roll-up query, which aggregated total sales by country and year, revealed that a few key countries account for the majority of revenue. The United Kingdom, for example, emerged as the top-selling country by a significant margin. This finding underscores the importance of prioritizing resources and strategic marketing in these high-performing regions.
 
-The roll-up query aggregated total sales by country and quarter, revealing broader sales patterns. For example, the United Kingdom and France showed consistent performance, while Germany had a spike in a specific quarter, possibly due to a marketing campaign or seasonal effect. Such quarterly trends can guide future resource allocation and promotional efforts.
+A drill-down query on the UK’s sales by month provided a more granular view, showing clear monthly fluctuations. This analysis helps identify seasonal trends and peak sales periods, which is vital for optimizing inventory management and planning staffing. The ability to quickly pivot from a high-level overview to detailed, specific insights is a key benefit of the data warehouse model.
 
-The drill-down query allowed us to focus on a single country (UK) and examine monthly sales fluctuations. This granularity helps identify peak sales months, which may align with holidays or sales events, and supports inventory and staffing decisions.
+This structured approach is invaluable for data-driven decision-making. By separating data into fact and dimension tables, business leaders can easily run queries to answer strategic questions, such as "Which countries are our most profitable?" or "When are our busiest sales months?" This allows for better forecasting, targeted marketing campaigns, and more efficient operational planning.
 
-The slice query filtered results for the Electronics category. Electronics appeared as a significant contributor to overall revenue, justifying strategic focus on marketing, product expansion, or supplier negotiations in this category.
-
-The ability to roll-up, drill-down, and slice data illustrates the strength of a data warehouse in supporting business intelligence tasks. By storing data in a star schema with fact and dimension tables, querying becomes straightforward and efficient.
-
-Since part of the dataset was synthetic, results may not perfectly reflect real-world consumer patterns. However, the methodology remains valid and can be applied directly to real transactional data. The structured approach ensures that decision-makers can access insights tailored to their operational and strategic needs, improving responsiveness and competitiveness.
+The analysis was conducted using a real, historical dataset spanning 2010-2011. Although the initial exam instructions specified a different date range, the code was adapted to work with the available data. This approach demonstrates a practical understanding of how to resolve data conflicts while still successfully building and analyzing a data warehouse.

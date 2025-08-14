@@ -151,4 +151,62 @@ CREATE TABLE SalesFact (
 - **Screenshots** — Database tables post-load
 
 
+## Section 3: OLAP Queries and Analysis (15 Marks)
+1. OLAP Queries
+
+Roll-Up: Total sales by country and quarter
+```
+SELECT s.country,
+       t.quarter,
+       SUM(f.total_sales) AS total_sales
+FROM Sales_Fact f
+JOIN Store_Dim s ON f.store_id = s.store_id
+JOIN Time_Dim t ON f.time_id = t.time_id
+GROUP BY s.country, t.quarter
+ORDER BY s.country, t.quarter;
+
+Drill-Down: Total sales for a specific country (United Kingdom) by month
+
+SELECT s.country,
+       t.month,
+       SUM(f.total_sales) AS total_sales
+FROM Sales_Fact f
+JOIN Store_Dim s ON f.store_id = s.store_id
+JOIN Time_Dim t ON f.time_id = t.time_id
+WHERE s.country = 'United Kingdom'
+GROUP BY s.country, t.month
+ORDER BY t.month;
+
+Slice: Total sales for a specific product category (Electronics)
+
+SELECT p.category,
+       SUM(f.total_sales) AS total_sales
+FROM Sales_Fact f
+JOIN Product_Dim p ON f.product_id = p.product_id
+WHERE p.category = 'Electronics'
+GROUP BY p.category;
+```
+
+2. Visualization
+
+The Roll-Up query result was visualized using Matplotlib.
+📌 Sales by Country (Bar Chart):
+
+![Sales by Country](data_warehousing/task3_olap/sales_by_country_analysis.png)
+
+3. Analysis Report  
+
+The analysis of the OLAP queries revealed key insights into sales performance:      
+
+- Key Findings
+i) Top Markets: The roll-up query revealed that the United Kingdom is the top-selling country by a significant margin. This insight is crucial for prioritizing marketing efforts and resources in key markets.
+
+ii) Seasonal Trends: A drill-down query on the UK's sales showed clear monthly fluctuations. This granularity helps identify peak sales periods and seasonal trends, which are vital for optimizing inventory and staffing.
+
+iii) Data-Driven Decisions: The data warehouse structure allows for quick and flexible querying, directly supporting better business decisions. Managers can easily answer questions like "Which countries are our most profitable?" to guide forecasting and strategic planning.
+
+
+
+
+
 
