@@ -93,4 +93,62 @@ CREATE TABLE SalesFact (
     FOREIGN KEY (CustomerKey) REFERENCES CustomerDim(CustomerKey)
 );
 ```
+## Section 2: ETL Process Implementation
+
+**Dataset Used:**  
+[Online Retail dataset - UCI ML Repository](https://archive.ics.uci.edu/dataset/352/online+retail)  
+(Downloaded as CSV and loaded into a pandas DataFrame. All missing values and incorrect data types were handled.)
+
+---
+
+### 1. Extract
+- Read the dataset into a pandas DataFrame.
+- Converted `InvoiceDate` column to datetime.
+- Removed rows with missing `CustomerID` values.
+- Ensured all numeric columns had correct data types.
+
+![Extracted Data Preview](task2_etl/screenshots/extract_preview.png)
+
+---
+
+### 2. Transform
+- Added a **`TotalSales`** column: `Quantity * UnitPrice`.
+- Created a **Customer Summary** table by grouping by `CustomerID` to get:
+  - Total purchases  
+  - Associated country  
+- Filtered transactions to only include sales from **August 12, 2024 to August 12, 2025**.
+- Removed outliers where:
+  - `Quantity < 0`  
+  - `UnitPrice <= 0`
+
+---
+
+### 3. Load
+- Created a SQLite database file: **`retail_dw.db`**.
+- Loaded transformed data into:
+  - **Fact Table:** `SalesFact`
+  - **Dimension Tables:** `CustomerDim`, `TimeDim`
+
+---
+
+### 4. ETL Function & Logging
+- Implemented the ETL process inside a single function.
+- Added logging to:
+  - Record number of rows processed at each stage.
+  - Capture and report errors.
+- Code is well-commented for clarity.
+
+**Screenshots**
+![Database Content Preview](data_warehousing/task2_etl/screenshots/database_content.png)
+![Retail Data Preview](data_warehousing/task2_etl/screenshots/retail_preview.png)
+
+---
+
+### Submission Files
+- **etl_retail.ipynb** / **etl_retail.ipynb** — Python ETL code
+- **retail_dw.db** — SQLite database file
+- **online_retail.csv** — Dataset (or generated synthetic CSV)
+- **Screenshots** — Database tables post-load
+
+
 
