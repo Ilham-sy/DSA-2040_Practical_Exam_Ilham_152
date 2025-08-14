@@ -121,7 +121,6 @@ CREATE TABLE SalesFact (
 - Ensured all numeric columns had correct data types.
 
 ![extract_preview](data_warehousing/task2_etl/screenshots/extract_preview.png)
-
 ---
 
 ### 2. Transform
