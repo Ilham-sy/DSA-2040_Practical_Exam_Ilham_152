@@ -3,7 +3,7 @@
 ### Task 1: Data Warehouse Design 
 
 **Scenario:**  
-We are designing a data warehouse for a retail company that sells products across multiple categories (e.g., electronics, clothing). The company tracks **sales**, **customers**, **products**, and **time**.
+I am designing a data warehouse for a retail company that sells products across multiple categories (e.g., electronics, clothing). The company tracks **sales**, **customers**, **products**, and **time**.
 
 The data warehouse must support queries such as:  
 - Total sales by product category per quarter.  
