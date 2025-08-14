@@ -14,34 +14,47 @@ The data warehouse must support queries such as:
 
 ### 1. Star Schema Design
 
-**Fact Table: `fact_sales`**  
+**Fact Table: `SALES_FACT`**  
 - **Measures:**  
   - `sales_amount`  
   - `quantity`  
 - **Foreign Keys:**  
   - `customer_id`  
   - `product_id`  
-  - `time_id`  
+  - `time_id`
+  - `store_id`  
 
 **Dimension Tables:**
 
-1. **`dim_customer`**  
+1. **`CUSTOMER_DIM`**  
    - `customer_id` (PK)  
-   - `name`  
+   - `customer_name`  
+   - `age`  
+   - `gender`  
    - `location`  
-   - `age_group`  
+   - `customer_segment`  
 
-2. **`dim_product`**  
+2. **`PRODUCT_DIM`**  
    - `product_id` (PK)  
-   - `name`  
+   - `product_name`  
    - `category`  
    - `brand`  
+   - `price`  
 
-3. **`dim_time`**  
+3. **`TIME_DIM`**  
    - `time_id` (PK)  
    - `date`  
+   - `day_of_week`  
+   - `month`
    - `quarter`  
    - `year`  
+
+4. **`STORE_DIM`**  
+   - `store_id` (PK)  
+   - `store_name`  
+   - `city`  
+   - `region`  
+   - `store_type`  
 
 📌 **Schema Diagram:**  
 ![Star Schema Diagram](data_warehousing/task1_design/schema_diagram.png)
